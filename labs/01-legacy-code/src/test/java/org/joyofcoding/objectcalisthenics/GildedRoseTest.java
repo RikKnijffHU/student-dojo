@@ -12,7 +12,7 @@ public class GildedRoseTest {
     private static final int MAX_BACKSTAGE_SELLIN = 30;
     private static final int MAX_QUALITY = 50;
     private GildedRose gildedRose;
-    private List<Item> items;
+    private List<ImplementItem> items;
     private Random rand = new Random(3456789);
 
     @Before
@@ -38,8 +38,8 @@ public class GildedRoseTest {
 
     @Test
     public void after_one_day_with_sufuras_having_sellIn_lesser_than_zero_and_quality_greater_than_zero() {
-        items = new ArrayList<Item>();
-        items.add(new Item("Sulfuras, Hand of Ragnaros", -1, 1));
+        items = new ArrayList<ImplementItem>();
+        items.add(new WeaponItem("Sulfuras, Hand of Ragnaros", -1, 1));
         repeatUpdateQuality(1);
 
         ItemsAssert.assertThat(items)
@@ -98,8 +98,8 @@ public class GildedRoseTest {
         }
     }
 
-    private List<Item> aBunchOfBackstagePasses() {
-        List<Item> listOfPasses = new ArrayList<Item>();
+    private List<ImplementItem> aBunchOfBackstagePasses() {
+        List<ImplementItem> listOfPasses = new ArrayList<ImplementItem>();
         for (int i = 0; i < 100; i++) {
             listOfPasses.add(aRandomBackstagePass());
         }
@@ -114,9 +114,9 @@ public class GildedRoseTest {
         return rand.nextInt(MAX_QUALITY);
     }
 
-    private Item aRandomBackstagePass() {
+    private ImplementItem aRandomBackstagePass() {
         int quality = randomQuality();
         int sellIn = randomSellIn();
-        return new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quality);
+        return new TicketItem("Backstage passes to a TAFKAL80ETC concert", sellIn, quality);
     }
 }
